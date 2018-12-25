@@ -1,0 +1,31 @@
+header {
+	grid-area: header;
+	border: medium #000000;
+	background-color: aqua;
+}
+section {
+	grid-area: nav;
+	border: medium #000000;
+	background-color: red;
+}
+article {
+	grid-area: main;
+	border: medium #000000;
+	background-color: yellow;
+}
+footer {
+	grid-area: footer;
+	border: medium #000000;
+	background-color: limegreen;
+}
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-template-rows: auto;
+	grid-row-gap: 10px;
+	grid-template-areas:
+		"header header header"
+		"nav main main"
+		"footer footer footer";
+}
