@@ -11,12 +11,21 @@
 </head>
 <body>
 	<div class="sidebar">
-		
+		<h2>Explore NYC</h1>
+		<div>
+			<span class="text">Search for nearby places</span>
+			<input id="places-search" type="text" placeholder="Ex: Pizza delivery in NYC">
+			<input id="go-places" type="button" value="Go">
+			<ul class="places-list" data-bind="foreach: locations">
+				<li><span data-bind="text: title"></span></li>
+			</ul>
+		</div>
 	</div>
 	<div id="map">
 
 	</div>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA2eV0ptrhadQ3tGKh1lUnn7tCzVBm_z4&libraries=places,drawing,geometry&callback=initMap">
 	</script>
+	<script>ko.applyBindings(locations);</script>
 </body>
 </html>
