@@ -21,9 +21,9 @@
 			<span class="text">Search for nearby places</span>
 			<input id="places-search" type="text" placeholder="Ex: Pizza delivery in NYC">
 			<input id="go-places" type="button" value="Go">
-			<ul class="places-list" data-bind="foreach: locations">
-				<li><span data-bind="text: title"></span></li>
-			</ul>
+			<div class="list-group locations" data-bind="foreach: locations">
+				<a href="#" class="list-group-item list-group-item-action"><span data-bind="text: title"></span></a>
+			</div>
 		</div>
 	</div>
 	<div id="map">

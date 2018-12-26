@@ -1,6 +1,9 @@
 .sidebar {
 	background-color: beige;
 }
+.locations {
+	width: 362px;
+}
 #map {
 	bottom: 0px;
 	height: 100%;
