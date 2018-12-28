@@ -74,17 +74,17 @@ function ViewModel() {
         var mapOptions = {
             center: new google.maps.LatLng(51.4980479, -0.0105351),
             zoom: 15,
-            styles: styles
+            styles: multiBrandNetwork
         };
         // Constructor creates a new map - only center and zoom are required.
         map = new google.maps.Map(mapCanvas, mapOptions);
 
         // Set InfoWindow
         this.largeInfoWindow = new google.maps.InfoWindow();
-        for (var i = 0; i < myLocations.length; i++) {
-            this.markerTitle = myLocations[i].title;
-            this.markerLat = myLocations[i].lat;
-            this.markerLng = myLocations[i].lng;
+        for (var i = 0; i < locations.length; i++) {
+            this.markerTitle = locations[i].title;
+            this.markerLat = locations[i].lat;
+            this.markerLng = locations[i].lng;
             // Google Maps marker setup
             this.marker = new google.maps.Marker({
                 map: map,
@@ -108,7 +108,7 @@ function ViewModel() {
 
     // This block appends our locations to a list using data-bind
     // It also serves to make the filter work
-    this.myLocationsFilter = ko.computed(function() {
+    this.locationsFilter = ko.computed(function() {
         var result = [];
         for (var i = 0; i < this.markers.length; i++) {
             var markerLocation = this.markers[i];
@@ -124,12 +124,12 @@ function ViewModel() {
     }, this);
 }
 
-googleError = function googleError() {
+loadError = function loadError() {
     alert(
         'Google Maps failed to load. Please refresh the page to try again.'
     );
 };
 
-function startApp() {
+function initialize() {
     ko.applyBindings(new ViewModel());
 }
