@@ -16,6 +16,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
 	</script>
 	<script>
+		// Fix Map container display issue
 		$(document).ready(function() {
 			function setHeight() {
 				windowHeight = $(window).innerHeight();
@@ -23,7 +24,6 @@
 				$('#sidebar').css('min-height', windowHeight);
 			};
 			setHeight();
-
 			$(window).resize(function() {
 				setHeight();
 			});
