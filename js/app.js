@@ -22,7 +22,8 @@ function ViewModel() {
             clientSecret = "LBPSU302BIXDTH3PDK3OAQVJ5EFCUUAHVWVKT2N55UROIGUO";
             var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll=' +
                 marker.lat + ',' + marker.lng + '&client_id=' + clientID +
-                '&client_secret=' + clientSecret + '&query=' + marker.title;
+                '&client_secret=' + clientSecret + '&query=' + marker.title + 
+                '&v=20170708' + '&m=foursquare';
 
             $.getJSON(apiUrl).done(function(marker) {
                 var response = marker.response.venues[0];
@@ -72,7 +73,7 @@ function ViewModel() {
     this.initMap = function() {
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
-            center: new google.maps.LatLng(51.4980479, -0.0105351),
+            center: new google.maps.LatLng(40.7413549, -73.9980244),
             zoom: 15,
             styles: multiBrandNetwork
         };
