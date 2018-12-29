@@ -1,12 +1,11 @@
 // Globals
 var map;
-var clientID;
-var clientSecret;
+var clientID = "ULWHF40HCQPBWB3FO512P5VZY3MSYWEIYMLC0JR2KFR2XDFA";
+var clientSecret = "LBPSU302BIXDTH3PDK3OAQVJ5EFCUUAHVWVKT2N55UROIGUO";
 
-
+// View Model / Octopus
 function ViewModel() {
     var self = this;
-
     this.searchOption = ko.observable("");
     this.markers = [];
 
@@ -16,38 +15,41 @@ function ViewModel() {
             infowindow.setContent('');
             infowindow.marker = marker;
             // Foursquare API
-            clientID = "ULWHF40HCQPBWB3FO512P5VZY3MSYWEIYMLC0JR2KFR2XDFA";
-            clientSecret = "LBPSU302BIXDTH3PDK3OAQVJ5EFCUUAHVWVKT2N55UROIGUO";
             var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll=' +
                 marker.lat + ',' + marker.lng + '&client_id=' + clientID +
                 '&client_secret=' + clientSecret + '&query=' + marker.title + 
                 '&v=20170708' + '&m=foursquare';
 
-            // Utilize Jquery JSON functions
+            // Utilize Jquery JSON functions to parse address from Foursquare response
+            // and build infowindow html.
             $.getJSON(apiUrl).done(function(marker) {
                 var response = marker.response.venues[0];
+                self.category = response.categories[0].shortName;
                 self.street = response.location.formattedAddress[0];
                 self.city = response.location.formattedAddress[1];
                 self.zip = response.location.formattedAddress[3];
                 self.country = response.location.formattedAddress[4];
-                self.category = response.categories[0].shortName;
 
+                // Build address HTML from response
                 self.htmlContentFoursquare =
-                    '<h5 class="subtitle">(' + self.category +
-                    ')</h5>' + '<div>' +
+                    '<p class="subtitle">[' + self.category +
+                    ']</p>' + '<div>' +
                     '<h6 class="address_title"> Address: </h6>' +
                     '<p class="address">' + self.street + '</p>' +
                     '<p class="address">' + self.city + '</p>' +
-                    '</p>' + '</div>' + '</div>';
+                    '</p>' + '</div>' + '</div><img class="foursquare" ' +
+                    'src="img/foursquare_attr.png" srcset="img/foursquare_attr@2x.png" ' +
+                    'alt="Powered By Foursquare!">';
 
                 infowindow.setContent(self.htmlContent + self.htmlContentFoursquare);
             }).fail(function() {
-                // Send alert
+                // Display Error
                 alert(
                     "The Foursquare API failed to load. Please try again in a moment by refreshing the page."
                 );
             });
 
+            // Infowindow title HTML
             this.htmlContent = '<div>' + '<h4 class="title">' + marker.title +
                 '</h4>';
 
@@ -86,7 +88,7 @@ function ViewModel() {
             this.markerTitle = locations[i].title;
             this.markerLat = locations[i].lat;
             this.markerLng = locations[i].lng;
-            // Google Maps marker setup
+            // Google Maps Marker object
             this.marker = new google.maps.Marker({
                 map: map,
                 position: {
@@ -99,6 +101,7 @@ function ViewModel() {
                 id: i,
                 animation: google.maps.Animation.DROP
             });
+
             this.marker.setMap(map);
             this.markers.push(this.marker);
             this.marker.addListener('click', self.populateAndBounceMarker);
@@ -112,11 +115,13 @@ function ViewModel() {
         var result = [];
         for (var i = 0; i < this.markers.length; i++) {
             var markerLocation = this.markers[i];
+            // Keep the marker location visible if it contains the filter...
             if (markerLocation.title.toLowerCase().includes(this.searchOption()
                     .toLowerCase())) {
                 result.push(markerLocation);
                 this.markers[i].setVisible(true);
             } else {
+                // Otherwise hide the marker.
                 this.markers[i].setVisible(false);
             }
         }
