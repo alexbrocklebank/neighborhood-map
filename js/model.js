@@ -16,13 +16,13 @@ var locations = [
     },
     {
         title: 'Famous Original Ray\'s Pizza', 
-        lat: 40.783460, 
-        lng: -73.948010
+        lat: 40.783459, 
+        lng: -73.948013
     },
     {
         title: 'The Crooked Knife', 
-        lat: 40.783460, 
-        lng: -73.948010
+        lat: 40.740600, 
+        lng: -73.973810
     },
     {
         title: 'New York City Hall', 
