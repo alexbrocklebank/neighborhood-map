@@ -38,8 +38,6 @@ function ViewModel() {
                     '<h6 class="address_title"> Address: </h6>' +
                     '<p class="address">' + self.street + '</p>' +
                     '<p class="address">' + self.city + '</p>' +
-                    '<p class="address">' + self.zip + '</p>' +
-                    '<p class="address">' + self.country +
                     '</p>' + '</div>' + '</div>';
 
                 infowindow.setContent(self.htmlContent + self.htmlContentFoursquare);

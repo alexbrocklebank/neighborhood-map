@@ -2,44 +2,37 @@ var locations = [
     {
         title: 'Empire State Building', 
         lat: 40.705608, 
-        lng: -74.016724,
-        type: 'Living Quarters'
+        lng: -74.016724
     },
     {
         title: 'Whitney Museum of American Art', 
         lat: 43.043230, 
-        lng: -74.863510,
-        type: 'Living Quarters'
+        lng: -74.863510
     },
     {
         title: 'Solomon R. Guggenheim Museum', 
         lat: 40.739580, 
-        lng: -74.006680,
-        type: 'Living Quarters'
+        lng: -74.006680
     },
     {
         title: 'Famous Original Ray\'s Pizza', 
         lat: 40.783460, 
-        lng: -73.948010,
-        type: 'Living Quarters'
+        lng: -73.948010
     },
     {
         title: 'The Crooked Knife', 
         lat: 40.783460, 
-        lng: -73.948010,
-        type: 'Living Quarters'
+        lng: -73.948010
     },
     {
         title: 'New York City Hall', 
         lat: 40.712513, 
-        lng: -74.006546,
-        type: 'Living Quarters'
+        lng: -74.006546
     },
     {
         title: 'Joe\'s Shanghai', 
         lat: 40.714580, 
-        lng: -73.997770,
-        type: 'Living Quarters'
+        lng: -73.997770
     }
 ];
 
