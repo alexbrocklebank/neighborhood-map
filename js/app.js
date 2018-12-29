@@ -33,13 +33,13 @@ function ViewModel() {
                 self.category = response.categories[0].shortName;
 
                 self.htmlContentFoursquare =
-                    '<h5 class="iw_subtitle">(' + self.category +
+                    '<h5 class="subtitle">(' + self.category +
                     ')</h5>' + '<div>' +
-                    '<h6 class="iw_address_title"> Address: </h6>' +
-                    '<p class="iw_address">' + self.street + '</p>' +
-                    '<p class="iw_address">' + self.city + '</p>' +
-                    '<p class="iw_address">' + self.zip + '</p>' +
-                    '<p class="iw_address">' + self.country +
+                    '<h6 class="address_title"> Address: </h6>' +
+                    '<p class="address">' + self.street + '</p>' +
+                    '<p class="address">' + self.city + '</p>' +
+                    '<p class="address">' + self.zip + '</p>' +
+                    '<p class="address">' + self.country +
                     '</p>' + '</div>' + '</div>';
 
                 infowindow.setContent(self.htmlContent + self.htmlContentFoursquare);
@@ -50,7 +50,7 @@ function ViewModel() {
                 );
             });
 
-            this.htmlContent = '<div>' + '<h4 class="iw_title">' + marker.title +
+            this.htmlContent = '<div>' + '<h4 class="title">' + marker.title +
                 '</h4>';
 
             infowindow.open(map, marker);

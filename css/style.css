@@ -24,20 +24,20 @@
     right: 0;
 }
 
-.iw_title {
+.title {
     font-size: 1.3em;
 }
 
-.iw_subtitle {
+.subtitle {
     font-size: 1em;
 }
 
-.iw_address_title {
+.address_title {
     margin-bottom: 2px;
     font-size: .95em;
 }
 
-.iw_address {
+.address {
     margin-bottom: 0;
     font-size: .9em;
 }
