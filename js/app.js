@@ -1,4 +1,4 @@
-// globals
+// Globals
 var map;
 var clientID;
 var clientSecret;
@@ -10,9 +10,7 @@ function ViewModel() {
     this.searchOption = ko.observable("");
     this.markers = [];
 
-    // This function populates the infowindow when the marker is clicked. We'll only allow
-    // one infowindow which will open at the marker that is clicked, and populate based
-    // on that markers position.
+    // Populates the infowindow when the marker is clicked, allowing only one
     this.populateInfoWindow = function(marker, infowindow) {
         if (infowindow.marker != marker) {
             infowindow.setContent('');
@@ -25,6 +23,7 @@ function ViewModel() {
                 '&client_secret=' + clientSecret + '&query=' + marker.title + 
                 '&v=20170708' + '&m=foursquare';
 
+            // Utilize Jquery JSON functions
             $.getJSON(apiUrl).done(function(marker) {
                 var response = marker.response.venues[0];
                 self.street = response.location.formattedAddress[0];
@@ -56,12 +55,14 @@ function ViewModel() {
 
             infowindow.open(map, marker);
 
+            // InfoWindow Close listener
             infowindow.addListener('closeclick', function() {
                 infowindow.marker = null;
             });
         }
     };
 
+    // Populate info window and animate marker
     this.populateAndBounceMarker = function() {
         self.populateInfoWindow(this, self.largeInfoWindow);
         this.setAnimation(google.maps.Animation.BOUNCE);
@@ -70,14 +71,15 @@ function ViewModel() {
         }).bind(this), 1400);
     };
 
+    // Initialize Map (center/zoom/styles) and iterate Markers
     this.initMap = function() {
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: new google.maps.LatLng(40.7413549, -73.9980244),
-            zoom: 15,
+            zoom: 13,
             styles: multiBrandNetwork
         };
-        // Constructor creates a new map - only center and zoom are required.
+        // Create Map object
         map = new google.maps.Map(mapCanvas, mapOptions);
 
         // Set InfoWindow
@@ -107,8 +109,7 @@ function ViewModel() {
 
     this.initMap();
 
-    // This block appends our locations to a list using data-bind
-    // It also serves to make the filter work
+    // Location list filter
     this.locationsFilter = ko.computed(function() {
         var result = [];
         for (var i = 0; i < this.markers.length; i++) {
@@ -125,12 +126,14 @@ function ViewModel() {
     }, this);
 }
 
+// Provide error message if Map fails to load.
 loadError = function loadError() {
     alert(
         'Google Maps failed to load. Please refresh the page to try again.'
     );
 };
 
+// Initialize the ViewModel once Map is loaded
 function initialize() {
     ko.applyBindings(new ViewModel());
 }
